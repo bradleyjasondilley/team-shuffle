@@ -1,0 +1,367 @@
+[
+    {
+        "name": "Hannah Ashworth",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Team Lead",
+            "Platform Support"
+        ],
+        "pool": "Task Pool UK",
+        "access": "team",
+        "startdate": "Mar 2006",
+        "throughput": 5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Fiona Forsythe",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Team Lead"
+        ],
+        "pool": "Task Pool A",
+        "access": "single",
+        "startdate": "Mar 2009",
+        "throughput": 5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Wouter Verwoerd",
+        "position": "Client Facing engineer",
+        "roles": [
+            "DB",
+            "Analytics"
+        ],
+        "pool": "Task Pool A",
+        "access": "single",
+        "startdate": "May 2011",
+        "throughput": 3,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Hamish Medlin",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Team Lead",
+            "On-Call",
+            "Components Team"
+        ],
+        "pool": "Task Pool D",
+        "access": "team",
+        "startdate": "Jun 2012",
+        "throughput": 5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Roberto Roca",
+        "position": "Client Facing engineer",
+        "roles": [
+            "SEO"
+        ],
+        "pool": "Task Pool UK",
+        "access": "single",
+        "startdate": "Jul 2012",
+        "throughput": 3.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Sam Botting",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Team Lead",
+            "Analytics"
+        ],
+        "pool": "Task Pool UK",
+        "access": "single",
+        "startdate": "Jul 2012",
+        "throughput": 4,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Steven Rutherford",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Platform Support"
+        ],
+        "pool": "Task Pool UK",
+        "access": "single",
+        "startdate": "Oct 2012",
+        "throughput": 4.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Callum Reid",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Tech Lead",
+            "Learning Recs",
+            "Components Team"
+        ],
+        "pool": "Task Pool D",
+        "access": "single",
+        "startdate": "Apr 2013",
+        "throughput": 4.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Yuki Fujii",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Platform Support",
+            "Support 10am",
+            "Japan"
+        ],
+        "pool": "Task Pool D",
+        "access": "single",
+        "startdate": "Jul 2013",
+        "throughput": 4,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Christopher Harding",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Platform Support",
+            "Support 10am"
+        ],
+        "pool": "Task Pool C",
+        "access": "single",
+        "startdate": "Sep 2013",
+        "throughput": 3,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Kyung-Jin",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Support 6am",
+            "Learning Recs",
+            "Platform Support"
+        ],
+        "pool": "Task Pool A",
+        "access": "single",
+        "startdate": "Feb 2014",
+        "throughput": 3.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Alasdair Ross",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Tech Lead",
+            "Components Team",
+            "Analytics"
+        ],
+        "pool": "Task Pool C",
+        "access": "single",
+        "startdate": "Jan 2015",
+        "throughput": 4.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Corey Barnard",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Learning Recs",
+            "Support 5am",
+            "Components Team"
+        ],
+        "pool": "Task Pool C",
+        "access": "single",
+        "startdate": "Feb 2015",
+        "throughput": 4.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Liam Twist",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Tech Lead",
+            "Support 6am",
+            "Analytics"
+        ],
+        "pool": "Task Pool A",
+        "access": "single",
+        "startdate": "Jan 2016",
+        "throughput": 4,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Amr Hussein",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Team Lead",
+            "On-Call"
+        ],
+        "pool": "Task Pool C",
+        "access": "single",
+        "startdate": "Feb 2016",
+        "throughput": 5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Nana Qi",
+        "position": "Client Facing engineer",
+        "roles": [
+            "On-Call",
+            "SEO"
+        ],
+        "pool": "Task Pool A",
+        "access": "single",
+        "startdate": "May 2016",
+        "throughput": 3.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Alexander Bayliss",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Analytics",
+            "Learning Recs",
+            "Components Team"
+        ],
+        "pool": "Task Pool UK",
+        "access": "single",
+        "startdate": "May 2016",
+        "throughput": 3.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Josie Smith",
+        "position": "Client Facing engineer",
+        "roles": [
+            "SEO",
+            "Analytics",
+            "On-Call"
+        ],
+        "pool": "Task Pool C",
+        "access": "single",
+        "startdate": "July 2016",
+        "throughput": 3.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Jiayi Liu",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Support 5am",
+            "Analytics",
+            "On-Call"
+        ],
+        "pool": "Task Pool D",
+        "access": "single",
+        "startdate": "Nov 2016",
+        "throughput": 3.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Rui Gong",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Platform Support"
+        ],
+        "pool": "Task Pool D",
+        "access": "single",
+        "startdate": "Jan 2017",
+        "throughput": 3,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Cecile Bourguignon",
+        "position": "Client Facing engineer",
+        "roles": [],
+        "pool": "Task Pool C",
+        "access": "single",
+        "startdate": "Feb 2017",
+        "throughput": 2.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Goryu Yoshizaki",
+        "position": "Client Facing engineer",
+        "roles": [
+            "Japan"
+        ],
+        "pool": "Task Pool A",
+        "access": "single",
+        "startdate": "Apr 2017",
+        "throughput": 2.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Pushkar Dandekar",
+        "position": "Client Facing engineer",
+        "roles": [],
+        "pool": "Task Pool D",
+        "access": "single",
+        "startdate": "Jun 2017",
+        "throughput": 2.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Sean Turley",
+        "position": "Client Facing engineer",
+        "roles": [],
+        "pool": "Task Pool C",
+        "access": "single",
+        "startdate": "Jul 2017",
+        "throughput": 2.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Joshua Jin",
+        "position": "Client Facing engineer",
+        "roles": [],
+        "pool": "Task Pool A",
+        "access": "single",
+        "startdate": "Jul 2017",
+        "throughput": 2.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Manolis Papanikolou",
+        "position": "Client Facing engineer",
+        "roles": [],
+        "pool": "Task Pool UK",
+        "access": "single",
+        "startdate": "Aug 2017",
+        "throughput": 2.5,
+        "availability": 1,
+        "effective": 1
+    },
+    {
+        "name": "Bin Li",
+        "position": "Client Facing engineer",
+        "roles": [],
+        "pool": "Task Pool D",
+        "access": "single",
+        "startdate": "Aug 2017",
+        "throughput": 2.5,
+        "availability": 1,
+        "effective": 1
+    }
+]

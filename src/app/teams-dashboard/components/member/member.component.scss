@@ -1,0 +1,57 @@
+.member{
+    background-color: #fff;
+    margin: 5px 10px 5px 5px;
+    position: relative;
+    min-height: 40px;
+}
+
+.member div.name{
+    font-weight: bold;
+}
+
+.member div.name span{
+    font-size: 10px;
+}
+
+.member div.name, .member div.roles{
+    padding: 3px 6px;
+    display: block;
+}
+
+.member div.roles{
+    padding: 3px 6px;
+    font-size: 11px;
+}
+
+.stats{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.throughput, .availability, .effective{
+    width: 30px;
+    font-size: 11px;
+    padding: 14px 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.throughput{
+    float: left;
+    background-color: #333;
+}
+
+.availability{
+    float: left;
+    background-color: #666;
+}
+
+.effective{
+    float: left;
+    background-color: #999;
+}
+
+.clear{
+    clear: both;
+}
