@@ -1,4 +1,8 @@
-<div class="team">
-    <h1>{{team.poolName}}</h1>
-    <member-component *ngFor="let user of team.members" [user]="user"></member-component>
+<div class="team" id="{{team.poolName | makeid}}">
+    <h1>{{team.poolName}} ({{memberCount}}) ({{teamScore}})</h1>
+    <div dragula="TEAMS">
+        <member-component 
+            *ngFor="let user of team.members" 
+            [user]="user"></member-component>
+    </div>
 </div>

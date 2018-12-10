@@ -1,16 +1,18 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { Team } from "../../models/team.interface";
 
 @Component({
-    selector: 'team-component',
-    styleUrls: ['team.component.scss'],
-    templateUrl: 'team.component.html'
+  selector: "team-component",
+  styleUrls: ["team.component.scss"],
+  templateUrl: "team.component.html"
 })
-export class TeamComponent{
-    @Input()
-    team: Team;
+export class TeamComponent {
+  @Input()
+  team: Team;
 
-    constructor(){
+  @Input()
+  memberCount: number;
 
-    }
+  @Input()
+  teamScore: number;
 }
