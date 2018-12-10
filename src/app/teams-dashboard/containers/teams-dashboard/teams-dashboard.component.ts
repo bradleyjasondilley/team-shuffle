@@ -41,11 +41,47 @@ export class TeamsDashboardComponent implements OnInit {
   }
 
   updateTeam(user, from, to, position){
-    console.log("user", user);
-    console.log("from", from);
-    console.log("to", to);
+    
     if (position){
-      console.log("position", position.id);
+      console.log("info", user, from, to, position.id);
+    }else{
+      console.log("info", user, from, to);
+    }
+
+
+    if(from != to){
+      let removed;
+      let teamIndex: number = 0;
+      let memberIndex: number = 0;
+      this.teams.forEach((team, tIndex) => {
+        //members = data.users.filter(member => member.pool === team);
+        
+        if (team.poolId === from) {
+          team.members = team.members.filter(member => {
+            if (member.id === user) {
+              removed = member;
+            }
+            return member.id != user;
+          });
+        }
+
+        if(team.poolId === to){
+          team.members.forEach((member,index) => {
+            if (member.id === position.id) {
+              teamIndex = tIndex;
+              if (index > 0){
+                memberIndex = index;
+              }
+              
+            }
+          });
+        }
+    
+      });
+      console.log("!!!!!!!!!!!!!", removed, teamIndex, memberIndex);
+      this.teams[teamIndex].members.splice(memberIndex, 0, removed);
+      
+      console.log("!!!",this.teams);
     }
   }
 
@@ -72,7 +108,10 @@ export class TeamsDashboardComponent implements OnInit {
       .sort()
       .forEach(team => {
         let members: Array<any> = [];
-        members = data.users.filter(member => member.pool === team);
+        members = data.users.filter(member => {
+          member.id = member.name.toLowerCase().replace(/\s/g, "");
+          return member.pool === team
+        });
         let teamScore = members.reduce(
           (total, memberdata) => total + memberdata.effective,
           0
