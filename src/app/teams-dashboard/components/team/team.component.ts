@@ -15,4 +15,7 @@ export class TeamComponent {
 
   @Input()
   teamScore: number;
+
+  @Input()
+  roles: any;
 }

@@ -8,13 +8,14 @@ import { TeamsDashboardService} from '../teams-dashboard/teams-dashboard.service
 
 import { TeamComponent } from "./components/team/team.component";
 import { MemberComponent } from "./components/member/member.component";
+import { RolesComponent } from "./components/roles/roles.component";
 
 import { DragulaModule } from "ng2-dragula";
 
 import { MakeidPipe } from "../teams-dashboard/pipes/makeid.pipe";
 
 @NgModule({
-  declarations: [TeamsDashboardComponent, TeamComponent, MemberComponent, MakeidPipe],
+  declarations: [TeamsDashboardComponent, TeamComponent, MemberComponent, RolesComponent, MakeidPipe],
   imports: [
     BrowserModule,
     CommonModule,

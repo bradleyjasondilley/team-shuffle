@@ -12,8 +12,12 @@ import { Subscription } from "rxjs";
 })
 export class TeamsDashboardComponent implements OnInit {
   teams: Array<any> = [];
+  teamLookup: Object = {};
   users: User[];
   roles: Object;
+  teamRoles: Array<Object> = [];
+  rolesLookup: Object = {};
+
   subs = new Subscription();
 
   constructor(
@@ -21,9 +25,7 @@ export class TeamsDashboardComponent implements OnInit {
     private dragulaService: DragulaService
   ) {
     this.subs.add(
-      this.dragulaService.drag("TEAMS").subscribe(({ name, el, source }) => {
-        
-      })
+      this.dragulaService.drag("TEAMS").subscribe(({ name, el, source }) => {})
     );
 
     this.subs.add(
@@ -31,58 +33,18 @@ export class TeamsDashboardComponent implements OnInit {
         .drop("TEAMS")
         .subscribe(({ name, el, target, source, sibling }) => {
           let position;
-          if (sibling){
+          if (sibling) {
             position = sibling.firstElementChild;
           }
 
-          this.updateTeam(el.firstElementChild.id, source.parentNode.id, target.parentNode.id, position);
+          this.updateTeam(
+            el.firstElementChild.id,
+            source.parentElement.id,
+            target.parentElement.id,
+            position
+          );
         })
     );
-  }
-
-  updateTeam(user, from, to, position){
-    
-    if (position){
-      console.log("info", user, from, to, position.id);
-    }else{
-      console.log("info", user, from, to);
-    }
-
-
-    if(from != to){
-      let removed;
-      let teamIndex: number = 0;
-      let memberIndex: number = 0;
-      this.teams.forEach((team, tIndex) => {
-        //members = data.users.filter(member => member.pool === team);
-        
-        if (team.poolId === from) {
-          team.members = team.members.filter(member => {
-            if (member.id === user) {
-              removed = member;
-            }
-            return member.id != user;
-          });
-        }
-
-        if(team.poolId === to){
-          team.members.forEach((member,index) => {
-            if (member.id === position.id) {
-              teamIndex = tIndex;
-              if (index > 0){
-                memberIndex = index;
-              }
-              
-            }
-          });
-        }
-    
-      });
-      console.log("!!!!!!!!!!!!!", removed, teamIndex, memberIndex);
-      this.teams[teamIndex].members.splice(memberIndex, 0, removed);
-      
-      console.log("!!!",this.teams);
-    }
   }
 
   ngOnInit() {
@@ -91,11 +53,84 @@ export class TeamsDashboardComponent implements OnInit {
     });
   }
 
+  updateTeam(user, oldPool, newPool, moveToPos) {
+
+    let moving;
+    let fromTeamIndex = this.teamLookup[oldPool];
+    let toTeamIndex = this.teamLookup[newPool];
+
+
+    this.teams[fromTeamIndex].members = this.teams[fromTeamIndex].members.filter(
+      member => {
+        if (member.id === user) {
+          moving = member;
+        }
+        return member.id != user;
+      }
+    );
+
+    let memberIndex = 0;
+    if (moveToPos) {
+      this.teams[toTeamIndex].members.forEach((member, index) => {
+        if (moveToPos) {
+          if (member.id === moveToPos.id) {
+            if (index > 0) {
+              memberIndex = index;
+            }
+          }
+        } else {
+          memberIndex = this.teams[toTeamIndex].members.length;
+        }
+      });
+    } else {
+      memberIndex = this.teams[toTeamIndex].members.length;
+    }
+
+
+    this.teams[toTeamIndex].members.splice(memberIndex, 0, moving);
+  }
+
+  updateTeamRoles() {
+    console.log("###", this.teams);
+    this.teams.forEach(team => {
+      let tmp = [];
+      this.teamRoles.forEach(role => {
+        console.log(role);
+        tmp.push(role);
+      });
+
+      team["teamRoles"] = [...tmp];
+      console.log("team",team.poolId);
+      team.members.forEach(member => {
+        console.log("\tname", member.name);
+        member.roles.forEach(role => {
+          console.log("\t\trole",role);
+          team["teamRoles"][this.rolesLookup[role]].count += 1;
+          team["teamRoles"][this.rolesLookup[role]].members.push(member.name);
+        });
+      });
+      console.log("roles", team.teamRoles);
+    });
+    console.log("###", this.teams);
+  }
+
   parseData(data) {
     this.users = data.users;
     this.roles = data.roles;
+
     let uniqueTeams: Object = new Object();
+    
+
+    Object.keys(data.roles).forEach((role,index) => {
+      this.teamRoles.push({ name: role, count: 0, members: [] });
+      this.rolesLookup[role] = index;
+    });
+
+    //console.log("teamRoles", teamRoles);
+    //console.log("rolesLookup", this.rolesLookup);
+
     data.users.forEach(element => {
+      //console.log("element", element);
       element.availability = this.calculateAvailability(element.roles);
       element.effective = this.calculateEffective(
         element.throughput,
@@ -106,25 +141,37 @@ export class TeamsDashboardComponent implements OnInit {
 
     Object.keys(uniqueTeams)
       .sort()
-      .forEach(team => {
+      .forEach((team,index) => {
         let members: Array<any> = [];
         members = data.users.filter(member => {
           member.id = member.name.toLowerCase().replace(/\s/g, "");
-          return member.pool === team
+          return member.pool === team;
         });
         let teamScore = members.reduce(
           (total, memberdata) => total + memberdata.effective,
           0
         );
+
+        
+        let poolId = this.genId(team);
+        this.teamLookup[poolId] = index;
+
         this.teams.push({
-          poolId: team.toLowerCase().replace(/\s/g, ""),
+          poolId: poolId,
           poolName: team,
           members: members,
           teamScore: teamScore.toFixed(1)
         });
       });
-
+    this.updateTeamRoles();
     console.log("teams", this.teams);
+    console.log("roles", this.roles);
+  }
+
+  
+
+  genId(inputValue){
+    return inputValue.toLowerCase().replace(/\s/g, "");
   }
 
   calculateAvailability(userRoles) {
@@ -140,7 +187,7 @@ export class TeamsDashboardComponent implements OnInit {
     return ((throughput / 5) * 10 * ((availability / 1) * 10)) / 100;
   }
 
-  checkTeams(event){
+  checkTeams(event) {
     console.log("event", event);
     console.log("teams", this.teams);
   }

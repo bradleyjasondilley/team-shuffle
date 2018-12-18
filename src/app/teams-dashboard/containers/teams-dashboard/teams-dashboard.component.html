@@ -1,6 +1,6 @@
 <team-component *ngFor="let team of teams"
     [team]="team" 
     [memberCount]="team.members.length"
-    [teamScore]="team.teamScore">
+    [teamScore]="team.teamScore"
+    [roles]="roles">
 </team-component>
-<button (click)="checkTeams()">Test</button>
