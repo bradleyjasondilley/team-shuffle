@@ -91,27 +91,47 @@ export class TeamsDashboardComponent implements OnInit {
   }
 
   updateTeamRoles() {
-    console.log("###", this.teams);
-    this.teams.forEach(team => {
-      let tmp = [];
-      this.teamRoles.forEach(role => {
-        console.log(role);
-        tmp.push(role);
-      });
 
-      team["teamRoles"] = [...tmp];
-      console.log("team",team.poolId);
+    console.log("!!!!!!!!!!!", this.teamRoles);
+    this.teams.forEach((team,teamIndex )=> {
+      console.log("name", team.poolId);
+      let tmpRoles = [...this.teamRoles];
+      tmpRoles.push({"name": teamIndex});
+      console.log("tmpRoles", tmpRoles);
+      
       team.members.forEach(member => {
-        console.log("\tname", member.name);
         member.roles.forEach(role => {
-          console.log("\t\trole",role);
-          team["teamRoles"][this.rolesLookup[role]].count += 1;
-          team["teamRoles"][this.rolesLookup[role]].members.push(member.name);
+          console.log(this.rolesLookup[role]);
+          
+          tmpRoles[this.rolesLookup[role]].count += 1;
+          tmpRoles[this.rolesLookup[role]].members.push(member.name);
         });
       });
-      console.log("roles", team.teamRoles);
+      team["teamRoles"] = [...tmpRoles];
     });
-    console.log("###", this.teams);
+
+
+    // console.log("###", this.teams);
+    // this.teams.forEach(team => {
+    //   // let tmp = [];
+    //   // this.teamRoles.forEach(role => {
+    //   //   console.log(role);
+    //   //   tmp.push(role);
+    //   // });
+
+    //   team["teamRoles"] = this.teamRoles.slice();
+    //   console.log("team",team.poolId);
+    //   team.members.forEach(member => {
+    //     console.log("\tname", member.name);
+    //     member.roles.forEach(role => {
+    //       console.log("\t\trole", role);
+    //       team["teamRoles"][this.rolesLookup[role]].count += 1;
+    //       team["teamRoles"][this.rolesLookup[role]].members.push(member.name);
+    //     });
+    //   });
+    //   console.log("roles", team.teamRoles);
+    // });
+    // console.log("###", this.teams);
   }
 
   parseData(data) {
