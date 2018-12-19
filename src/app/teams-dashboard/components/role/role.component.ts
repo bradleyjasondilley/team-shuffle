@@ -3,13 +3,13 @@ import { User } from '../../models/user.interface';
 
 
 @Component({
-    selector: "roles-component",
-    styleUrls: ["roles.component.scss"],
-    templateUrl: "roles.component.html"
+    selector: "role-component",
+    styleUrls: ["role.component.scss"],
+    templateUrl: "role.component.html"
 })
-export class RolesComponent implements OnInit {
+export class RoleComponent implements OnInit {
   @Input()
-  allRoles: any;
+  role: any;
 
   constructor() {}
 

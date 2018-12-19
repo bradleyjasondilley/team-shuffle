@@ -90,67 +90,13 @@ export class TeamsDashboardComponent implements OnInit {
     this.teams[toTeamIndex].members.splice(memberIndex, 0, moving);
   }
 
-  updateTeamRoles() {
-
-    console.log("!!!!!!!!!!!", this.teamRoles);
-    this.teams.forEach((team,teamIndex )=> {
-      console.log("name", team.poolId);
-      let tmpRoles = [...this.teamRoles];
-      tmpRoles.push({"name": teamIndex});
-      console.log("tmpRoles", tmpRoles);
-      
-      team.members.forEach(member => {
-        member.roles.forEach(role => {
-          console.log(this.rolesLookup[role]);
-          
-          tmpRoles[this.rolesLookup[role]].count += 1;
-          tmpRoles[this.rolesLookup[role]].members.push(member.name);
-        });
-      });
-      team["teamRoles"] = [...tmpRoles];
-    });
-
-
-    // console.log("###", this.teams);
-    // this.teams.forEach(team => {
-    //   // let tmp = [];
-    //   // this.teamRoles.forEach(role => {
-    //   //   console.log(role);
-    //   //   tmp.push(role);
-    //   // });
-
-    //   team["teamRoles"] = this.teamRoles.slice();
-    //   console.log("team",team.poolId);
-    //   team.members.forEach(member => {
-    //     console.log("\tname", member.name);
-    //     member.roles.forEach(role => {
-    //       console.log("\t\trole", role);
-    //       team["teamRoles"][this.rolesLookup[role]].count += 1;
-    //       team["teamRoles"][this.rolesLookup[role]].members.push(member.name);
-    //     });
-    //   });
-    //   console.log("roles", team.teamRoles);
-    // });
-    // console.log("###", this.teams);
-  }
-
   parseData(data) {
     this.users = data.users;
     this.roles = data.roles;
 
     let uniqueTeams: Object = new Object();
-    
-
-    Object.keys(data.roles).forEach((role,index) => {
-      this.teamRoles.push({ name: role, count: 0, members: [] });
-      this.rolesLookup[role] = index;
-    });
-
-    //console.log("teamRoles", teamRoles);
-    //console.log("rolesLookup", this.rolesLookup);
 
     data.users.forEach(element => {
-      //console.log("element", element);
       element.availability = this.calculateAvailability(element.roles);
       element.effective = this.calculateEffective(
         element.throughput,
@@ -158,6 +104,8 @@ export class TeamsDashboardComponent implements OnInit {
       );
       uniqueTeams[element.pool] = 1;
     });
+
+    
 
     Object.keys(uniqueTeams)
       .sort()
@@ -172,7 +120,6 @@ export class TeamsDashboardComponent implements OnInit {
           0
         );
 
-        
         let poolId = this.genId(team);
         this.teamLookup[poolId] = index;
 
@@ -180,15 +127,23 @@ export class TeamsDashboardComponent implements OnInit {
           poolId: poolId,
           poolName: team,
           members: members,
+          roles: this.getRoles(),
           teamScore: teamScore.toFixed(1)
         });
       });
-    this.updateTeamRoles();
     console.log("teams", this.teams);
     console.log("roles", this.roles);
+    console.log("team roles", this.teamRoles);
   }
 
-  
+  getRoles(){
+    let roles = [];
+    Object.keys(this.roles).forEach((role, index) => {
+      roles.push({ name: role, count: 0, members: [] });
+      this.rolesLookup[role] = index;
+    });
+    return roles;
+  }
 
   genId(inputValue){
     return inputValue.toLowerCase().replace(/\s/g, "");

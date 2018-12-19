@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component,Input, OnChanges, OnInit } from '@angular/core';
 import { Team } from "../../models/team.interface";
 
 @Component({
@@ -6,7 +6,8 @@ import { Team } from "../../models/team.interface";
   styleUrls: ["team.component.scss"],
   templateUrl: "team.component.html"
 })
-export class TeamComponent {
+export class TeamComponent implements OnChanges, OnInit {
+
   @Input()
   team: Team;
 
@@ -17,5 +18,31 @@ export class TeamComponent {
   teamScore: number;
 
   @Input()
-  roles: any;
+  rolesLookup: any;
+
+  ngOnInit(){
+  }
+
+  ngOnChanges() {
+    this.updateTeamRoles();
+  }
+
+  updateTeamRoles() {
+    this.clearRoles();
+
+
+    this.team.members.forEach(member => {
+      member.roles.forEach(role => {
+        this.team["roles"][this.rolesLookup[role]]["count"] += 1;
+        this.team["roles"][this.rolesLookup[role]]["members"].push(member.name);
+      });
+    });
+  }
+
+  clearRoles(){
+    this.team["roles"].forEach(role => {
+      role.count = 0;
+      role.members = [];
+    });
+  }
 }
